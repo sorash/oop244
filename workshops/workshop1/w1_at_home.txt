@@ -1,0 +1,6 @@
+-open an IDE such as visual studio which has the ability of making a c++ project.
+-choose a c++ project from the list.
+-choose the directory in which the project will be in and give it a name.
+-make sure to check empty project in the wizard, so that you can create your own files and code.
+-create a main cpp file and create a main function.
+-you can now debug/run this simple c++ program.
