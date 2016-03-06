@@ -1,0 +1,2 @@
+1) using modules in object oriented programming, i was able to add features to my class without having to modify the main class that runs the code. This is a very helpful feature in oop to seperate parts of code and add extra functions.
+2) since it is put in a while loop, the code will run unless it is invalid, therefore the while loop executed the cout command put in it.
