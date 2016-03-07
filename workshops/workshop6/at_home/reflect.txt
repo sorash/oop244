@@ -1,0 +1,9 @@
+1) friend functions should be avoided due to the fact that your class exposes its private values to the frined functions and therefore can be changed from them, ruining the encapsulation of private variables in the class.
+2) yes, it could be done as a method such as the following, which will return a new account object with the sum of the given 2 accounts' balances.
+Account add(Account& a)
+{
+
+	Account ret(balance_ + a.balance_);
+	return ret;
+}
+3) the compiler does the next best thing it understands, and that is to run the one parameter constructor and make an account object with the double as balance, it then uses the operator= to transfer that value to C.
