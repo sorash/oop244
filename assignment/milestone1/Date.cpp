@@ -81,25 +81,27 @@ namespace sict
 		return readErrorCode_ != 0 ? true : false;
 	}
 
-	// reads date in format: YYY?MM?DD
+	// reads date in format: YYYY?MM?DD
 	std::istream& Date::read(std::istream& istr)
 	{
-		char delim1, delim2;
-		cin >> year_ >> delim1 >> mon_ >> delim2 >> day_;
+		char delim;
+		cin >> year_ >> delim >> mon_ >> delim >> day_;
 		if (cin.bad() || cin.fail())
 			errCode(CIN_FAILED);
 		else
 		{
-			if (year_ > MAX_YEAR || year_ < MIN_YEAR)
+			if (year_ < MIN_YEAR || year_ > MAX_YEAR)
 				errCode(YEAR_ERROR);
 			else
 			{
-				if (mon_ > 1 || mon_< 12)
+				if (mon_ < 1 || mon_ > 12)
 					errCode(MON_ERROR);
 				else
 				{
-					if (day_ > 1 || day_ < mdays(mon_))
+					if (day_ < 1 || day_ > mdays(mon_))
 						errCode(DAY_ERROR);
+					else
+						cout << year_ << ',' << mon_ << ',' << day_ << endl;
 				}
 			}
 		}

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="01-DefValTester.cpp" />
+    <ClCompile Include="04-ErrorHandling.cpp" />
     <ClCompile Include="Date.cpp" />
   </ItemGroup>
   <ItemGroup>

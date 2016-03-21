@@ -18,7 +18,7 @@
     <ClCompile Include="Date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="01-DefValTester.cpp">
+    <ClCompile Include="04-ErrorHandling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -43,7 +43,7 @@ namespace sict
 	};
 
 	// custom IO for date
-	std::istream& operator>>(std::istream& istr, const Date& d);
+	std::istream& operator>>(std::istream& istr, Date& d);
 	std::ostream& operator<<(std::ostream& ostr, const Date& d);
 }
 
