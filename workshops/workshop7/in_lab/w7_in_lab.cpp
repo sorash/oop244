@@ -4,12 +4,18 @@
 using namespace std;
 using namespace sict;
 
-void drive(???){
-
+void drive(Car& c)
+{
+	c.accelerate();
+	c.display(std::cout);
 }
-void stop(????){
 
+void stop(Car& c)
+{
+	while (c.speed() > 0)
+		c.brake();
 
+	c.display(std::cout);
 }
 
 int main()
