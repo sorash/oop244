@@ -112,7 +112,7 @@ namespace sict
 	// writes the date in format: YYYY/MM/DD
 	std::ostream& Date::write(std::ostream& ostr)const
 	{
-		cout << year_ << '/' << mon_ << '/' << day_ << endl;
+		cout << year_ << '/' << setfill('0') << setw(2) << mon_ << '/' << setfill('0') << setw(2) << day_ << endl;
 		return ostr;
 	}
 
