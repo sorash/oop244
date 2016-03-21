@@ -100,8 +100,6 @@ namespace sict
 				{
 					if (day_ < 1 || day_ > mdays(mon_))
 						errCode(DAY_ERROR);
-					else
-						cout << year_ << ',' << mon_ << ',' << day_ << endl;
 				}
 			}
 		}
