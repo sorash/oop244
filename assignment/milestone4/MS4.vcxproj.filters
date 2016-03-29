@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="general.h">
+    <ClInclude Include="Product.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Product.h">
+    <ClInclude Include="general.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Streamable.h">
