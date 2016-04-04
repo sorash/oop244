@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Product.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="general.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Streamable.h">
+    <ClInclude Include="product.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="streamable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Product.cpp">
+    <ClCompile Include="ms4Tester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ms4Tester.cpp">
+    <ClCompile Include="product.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

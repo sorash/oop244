@@ -77,12 +77,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="general.h" />
-    <ClInclude Include="Product.h" />
-    <ClInclude Include="Streamable.h" />
+    <ClInclude Include="product.h" />
+    <ClInclude Include="streamable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ms4Tester.cpp" />
-    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="product.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

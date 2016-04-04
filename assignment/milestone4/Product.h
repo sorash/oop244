@@ -17,23 +17,23 @@ namespace sict
 
 	public:
 		Product();
-		Product(const char* sku, const char* name, bool taxed = true, int price = 0, int qtyNeeded = 0);
+		Product(const char* sku, const char* name, bool taxed = true, double price = 0, int qtyNeeded = 0);
 		Product(const Product&);
 		Product& operator=(const Product&);
 		~Product();
 
 		// setters
-		void sku(char*);
+		void sku(const char*);
+		void name(const char*);
 		void price(double);
-		void name(char*);
 		void taxed(bool);
 		void quantity(int);
 		void qtyNeeded(int);
 
 		// getters
 		char* sku() const;
-		double price() const;
 		char* name() const;
+		double price() const;
 		bool taxed() const;
 		int quantity() const;
 		int qtyNeeded() const;
@@ -41,7 +41,7 @@ namespace sict
 		bool isEmpty() const;
 
 		// operator overloads
-		bool operator==(char*);
+		bool operator==(const char*);
 		int operator+=(int);
 		int operator-=(int);
 	};
