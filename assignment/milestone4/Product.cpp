@@ -145,7 +145,15 @@ namespace sict
 	// non member
 	double operator+=(double d, const Product& p)
 	{
-		return p.cost() * p.quantity() + d;
+		cout << endl << endl << endl << endl << endl << endl;
+		cout << endl << endl << endl << endl << endl << endl;
+		cout << endl << endl << endl << endl << endl << endl;
+		cout << (p.cost() * p.quantity()) + d << endl;
+		cout << endl << endl << endl << endl << endl << endl;
+		cout << endl << endl << endl << endl << endl << endl;
+		cout << endl << endl << endl << endl << endl << endl;
+
+		return (p.cost() * p.quantity()) + d;
 	}
 	std::istream& operator>>(std::istream& is, Product& p)
 	{
