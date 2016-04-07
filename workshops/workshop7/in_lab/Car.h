@@ -16,8 +16,7 @@ namespace sict
 
 	public:
 		int speed() const;
-		Car(int maxSpeed = 100);
+		Car(int max = 100);
 	};
 }
-
 #endif
