@@ -13,5 +13,4 @@ namespace sict
 		virtual std::ostream& display(std::ostream& ostr) const = 0;
 	};
 }
-
 #endif
