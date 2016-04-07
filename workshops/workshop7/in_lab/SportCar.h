@@ -11,8 +11,9 @@ namespace sict
 
 	public:
 		SportCar();
-		SportCar(int maxSpeed, int passNum);
+		SportCar(int max, int passNo);
 
+		// implementations of Vehicle's pure virtual methods
 		void accelerate();
 		void brake();
 		std::ostream& display(std::ostream& ostr) const;
