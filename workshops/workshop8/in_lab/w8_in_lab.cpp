@@ -8,13 +8,15 @@ void drive(Car& c)
 {
 	c.accelerate();
 	c.brake();
+	c.display(cout) << endl;
 }
 
 void stop(Car& c)
 {
 	while (c.speed() > 0)
 		c.brake();
-	c.display(cout);
+
+	c.display(cout) << endl;
 }
 
 int main()
