@@ -44,8 +44,8 @@ namespace sict
 
 		if (speed() > 0)
 			ostr << ", traveling at the speed of " << speed() << " km/h.";
-		else if (speed() == 0)
-			ostr << "and is parked.";
+		else
+			ostr << " and is parked.";
 
 		return ostr;
 	}

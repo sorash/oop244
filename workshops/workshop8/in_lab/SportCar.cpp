@@ -25,9 +25,9 @@ namespace sict
 	std::ostream& SportCar::display(std::ostream& ostr) const
 	{
 		if (speed() > 0)
-			ostr << "This sport car is carrying " << noOfPassengers_ << " and is traveling at a speed of " << speed() << " km/h.";
-		if (speed() == 0)
-			ostr << "This sport car is carrying " << noOfPassengers_ << " and is parked.";
+			ostr << "This sport car is carrying " << noOfPassengers_ << " passengers and is traveling at a speed of " << speed() << " km/h.";
+		else
+			ostr << "This sport car is carrying " << noOfPassengers_ << " passengers and is parked.";
 		
 		return ostr;
 	}
