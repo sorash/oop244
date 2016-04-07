@@ -9,18 +9,17 @@ namespace sict
 	{
 		int loadAmount_;
 		char loadedMaterial_[31];
-	
+
 	public:
 		PickupTruck();
-
-		void load(const char* loadedMaterial, int loadAmount);
+		void load(const char* loadedMat, int loadAmount);
 		void unload();
 		bool isEmpty() const;
 
+		// implementations of Vehicle's pure virtual methods
 		void accelerate();
 		void brake();
 		std::ostream& display(std::ostream& ostr) const;
 	};
 }
-
 #endif
