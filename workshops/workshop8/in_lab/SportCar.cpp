@@ -28,5 +28,7 @@ namespace sict
 			ostr << "This sport car is carrying " << noOfPassengers_ << " and is traveling at a speed of " << speed() << " km/h.";
 		if (speed() == 0)
 			ostr << "This sport car is carrying " << noOfPassengers_ << " and is parked.";
+		
+		return ostr;
 	}
 }

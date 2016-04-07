@@ -46,5 +46,7 @@ namespace sict
 			ostr << ", traveling at the speed of " << speed() << " km/h.";
 		else if (speed() == 0)
 			ostr << "and is parked.";
+
+		return ostr;
 	}
 }
