@@ -36,6 +36,7 @@ namespace sict
 		int quantity_, qtyNeeded_;
 		double price_;
 		bool taxed_;
+		char delim;
 		
 		// skip tag
 		file.ignore();
@@ -43,11 +44,17 @@ namespace sict
 
 		// read fields
 		file >> sku_
+			>> delim
 			>> name_ 
+			>> delim
 			>> price_ 
+			>> delim
 			>> taxed_ 
+			>> delim
 			>> quantity_ 
+			>> delim
 			>> unit_ 
+			>> delim
 			>> qtyNeeded_;
 
 		// set values
@@ -115,19 +122,47 @@ namespace sict
 
 		cout << "Taxed? (y/n): ";
 		istr >> taxed_;
-		taxed(taxed_);
+		if (taxed_ == 'Y' || taxed_ == 'y' || taxed_ == 'N' || taxed_ == 'n')
+		{
+			taxed(taxed_);
+			istr.clear();
 
-		cout << "Price: ";
-		istr >> price_;
-		price(price_);
+			cout << "Price: ";
+			istr >> price_;
+			if (istr.fail)
+			{
+				err_.message("Invalid Price Entry");
+			}
+			else
+			{
+				price(price_);
 
-		cout << "Quantity On hand: ";
-		istr >> quantity_;
-		quantity(quantity_);
+				cout << "Quantity On hand: ";
+				istr >> quantity_;
+				if (istr.fail)
+				{
+					err_.message("Invalid Quantity Entry");
+				}
+				else
+				{
+					quantity(quantity_);
 
-		cout << "Quantity Needed: ";
-		istr >> qtyNeeded_;
-		qtyNeeded(qtyNeeded_);
+					cout << "Quantity Needed: ";
+					istr >> qtyNeeded_;
+					if (istr.fail)
+					{
+						err_.message("Invalid Quantity Needed Entry");
+					}
+					else
+						qtyNeeded(qtyNeeded_);
+				}
+			}
+		}
+		else
+		{
+			err_.message("Only (Y)es or (N)o are acceptable");
+			istr.setstate(ios::failbit);
+		}
 
 		return istr;
 	}
