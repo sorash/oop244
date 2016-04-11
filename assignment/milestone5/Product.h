@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "general.h"
-#include "streamable.h"
+#include "Streamable.h"
 
 namespace sict
 {
@@ -47,7 +47,7 @@ namespace sict
 	};
 
 	// non-member operator overloads
-	double operator+=(double, const Product&);
+	double operator+=(double&, const Product&);
 	std::istream& operator>>(std::istream& is, Product& p);
 	std::ostream& operator<<(std::ostream& os, const Product&);
 }

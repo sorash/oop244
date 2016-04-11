@@ -5,6 +5,8 @@
 #include "ErrorMessage.h"
 #include <fstream>
 
+using namespace std;
+
 namespace sict
 {
 	class AmaProduct : public Product
@@ -20,10 +22,10 @@ namespace sict
 		void unit(const char* value);
 		
 		// base functions
-		fstream& AmaProduct::store(fstream& file, bool addNewLine) const;
-		fstream& AmaProduct::load(fstream& file);
-		ostream& AmaProduct::write(ostream& os, bool linear) const;
-		istream& AmaProduct::read(istream& istr);
+		fstream& store(fstream& file, bool addNewLine) const;
+		fstream& load(fstream& file);
+		ostream& write(ostream& os, bool linear) const;
+		istream& read(istream& istr);
 	};
 }
 #endif

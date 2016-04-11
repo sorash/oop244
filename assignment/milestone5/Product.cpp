@@ -1,4 +1,4 @@
-#include "product.h"
+#include "Product.h"
 #include "general.h"
 #include <cstring>
 
@@ -19,7 +19,7 @@ namespace sict
 	Product::Product(const char* sku, const char* name, bool taxed, double price, int qtyNeeded)
 	{
 		strncpy(sku_, sku, MAX_SKU_LEN);
-		
+
 		name_ = new char[strlen(name) + 1];
 		strcpy(name_, name);
 
@@ -129,7 +129,7 @@ namespace sict
 	}
 
 	// operator overloads
-	bool Product::operator==(const char* c)	
+	bool Product::operator==(const char* c)
 	{
 		return !strcmp(sku_, c);
 	}
@@ -143,17 +143,9 @@ namespace sict
 	}
 
 	// non member
-	double operator+=(double d, const Product& p)
+	double operator+=(double& d, const Product& p)
 	{
-		cout << endl << endl << endl << endl << endl << endl;
-		cout << endl << endl << endl << endl << endl << endl;
-		cout << endl << endl << endl << endl << endl << endl;
-		cout << (p.cost() * p.quantity()) + d << endl;
-		cout << endl << endl << endl << endl << endl << endl;
-		cout << endl << endl << endl << endl << endl << endl;
-		cout << endl << endl << endl << endl << endl << endl;
-
-		return (p.cost() * p.quantity()) + d;
+		return d += p.cost() * p.quantity();
 	}
 	std::istream& operator>>(std::istream& is, Product& p)
 	{
