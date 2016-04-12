@@ -94,7 +94,7 @@ namespace sict
 				os << "Sku: " << sku() << endl
 					<< "Name: " << name() << endl
 					<< "Price: " << cost() << endl
-					<< "Price after tax: " << (price() > 0) ? os << price() : os << "N/A" << endl
+					<< "Price after tax: " << taxed() ? os << price() : os << "N/A" << endl
 					<< "Quantitiy On Hand: " << quantity() << endl
 					<< "Quanttity Needed: " << qtyNeeded();
 			}
