@@ -61,7 +61,10 @@ namespace sict
 		sku(sku_);
 		name(name_);
 		price(price_);
-		taxed(taxed_);
+		if (tolower(taxed_) == 'y')
+			taxed(true);
+		else if (tolower(taxed_) == 'n')
+			taxed(false);
 		quantity(quantity_);
 		qtyNeeded(qtyNeeded_);
 
