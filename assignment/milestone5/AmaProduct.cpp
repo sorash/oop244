@@ -61,10 +61,7 @@ namespace sict
 		sku(sku_);
 		name(name_);
 		price(price_);
-		if (tolower(taxed_) == 'y')
-			taxed(true);
-		else if (tolower(taxed_) == 'n')
-			taxed(false);
+		taxed(taxed_);
 		quantity(quantity_);
 		qtyNeeded(qtyNeeded_);
 
@@ -87,7 +84,8 @@ namespace sict
 					<< '|'
 					<< os.left << os.width(10) << unit_
 					<< '|'
-					<< os.right << os.width(4) << qtyNeeded();
+					<< os.right << os.width(4) << qtyNeeded()
+					<< '|';
 			}
 			else
 			{
@@ -127,11 +125,7 @@ namespace sict
 		istr >> taxed_;
 		if (taxed_ == 'Y' || taxed_ == 'y' || taxed_ == 'N' || taxed_ == 'n')
 		{
-			if (tolower(taxed_) == 'y')
-				taxed(true);
-			else if (tolower(taxed_) == 'n')
-				taxed(false);
-
+			tolower(taxed_) == 'y' ? taxed(true) : taxed(false);
 			istr.clear();
 
 			cout << "Price: ";
@@ -139,6 +133,7 @@ namespace sict
 			if (istr.fail())
 			{
 				err_.message("Invalid Price Entry");
+				istr.setstate(ios::failbit);
 			}
 			else
 			{
@@ -149,6 +144,7 @@ namespace sict
 				if (istr.fail())
 				{
 					err_.message("Invalid Quantity Entry");
+					istr.setstate(ios::failbit);
 				}
 				else
 				{
@@ -159,6 +155,7 @@ namespace sict
 					if (istr.fail())
 					{
 						err_.message("Invalid Quantity Needed Entry");
+						istr.setstate(ios::failbit);
 					}
 					else
 						qtyNeeded(qtyNeeded_);

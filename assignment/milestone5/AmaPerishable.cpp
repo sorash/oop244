@@ -42,7 +42,7 @@ namespace sict
 		if (err_.isClear())
 		{
 			if (linear)
-				ostr << expiry_;
+				ostr << '|' << expiry_;
 			else
 				ostr << endl << "Expiry date: " << expiry_;
 		}
