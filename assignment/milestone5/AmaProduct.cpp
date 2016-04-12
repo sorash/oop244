@@ -32,10 +32,10 @@ namespace sict
 
 	fstream& AmaProduct::load(fstream& file)
 	{
-		char *sku_, *name_;
+		char sku_[2000], name_[2000];
 		int quantity_, qtyNeeded_;
 		double price_;
-		bool taxed_;
+		char taxed_;
 		char delim;
 		
 		// skip tag
@@ -104,10 +104,10 @@ namespace sict
 
 	istream& AmaProduct::read(istream& istr)
 	{
-		char *sku_, *name_;
+		char sku_[2000], name_[2000];
 		int quantity_, qtyNeeded_;
 		double price_;
-		bool taxed_;
+		char taxed_;
 
 		cout << "Sku: ";
 		istr >> sku_;
@@ -124,12 +124,16 @@ namespace sict
 		istr >> taxed_;
 		if (taxed_ == 'Y' || taxed_ == 'y' || taxed_ == 'N' || taxed_ == 'n')
 		{
-			taxed(taxed_);
+			if (tolower(taxed_) == 'y')
+				taxed(true);
+			else if (tolower(taxed_) == 'n')
+				taxed(false);
+
 			istr.clear();
 
 			cout << "Price: ";
 			istr >> price_;
-			if (istr.fail)
+			if (istr.fail())
 			{
 				err_.message("Invalid Price Entry");
 			}
@@ -139,7 +143,7 @@ namespace sict
 
 				cout << "Quantity On hand: ";
 				istr >> quantity_;
-				if (istr.fail)
+				if (istr.fail())
 				{
 					err_.message("Invalid Quantity Entry");
 				}
@@ -149,7 +153,7 @@ namespace sict
 
 					cout << "Quantity Needed: ";
 					istr >> qtyNeeded_;
-					if (istr.fail)
+					if (istr.fail())
 					{
 						err_.message("Invalid Quantity Needed Entry");
 					}

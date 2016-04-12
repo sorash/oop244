@@ -16,13 +16,13 @@ namespace sict
 		char unit_[11];
 	protected:
 		ErrorMessage err_;
-		AmaProduct(char tag = 'N');
 	public:
+		AmaProduct(char tag = 'N');
 		const char* unit() const;
 		void unit(const char* value);
 		
 		// base functions
-		fstream& store(fstream& file, bool addNewLine) const;
+		fstream& store(fstream& file, bool addNewLine = true) const;
 		fstream& load(fstream& file);
 		ostream& write(ostream& os, bool linear) const;
 		istream& read(istream& istr);
