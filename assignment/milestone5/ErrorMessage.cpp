@@ -58,7 +58,7 @@ namespace sict
 	{
 		if (!err.isClear())
 		{
-			std::cout << err.message();
+			ostr << err.message();
 		}
 
 		return ostr;
