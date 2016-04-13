@@ -34,38 +34,15 @@ namespace sict
 
 	fstream& AmaProduct::load(fstream& file)
 	{
-		char sku_[2000], name_[2000];
-		int quantity_, qtyNeeded_;
-		double price_;
-		char taxed_;
-		char delim;
+		char _sku[MAX_SKU_LEN + 1], _name[2000];
+		char _taxed;
+		int _quantity, _qtyNeeded;
+		double _price;
 		
 		// skip tag
 		file.ignore();
 		file.ignore();
 
-		// read fields
-		file >> sku_
-			>> delim
-			>> name_ 
-			>> delim
-			>> price_ 
-			>> delim
-			>> taxed_ 
-			>> delim
-			>> quantity_ 
-			>> delim
-			>> unit_ 
-			>> delim
-			>> qtyNeeded_;
-
-		// set values
-		sku(sku_);
-		name(name_);
-		price(price_);
-		taxed(taxed_);
-		quantity(quantity_);
-		qtyNeeded(qtyNeeded_);
 
 		return file;
 	}
@@ -78,25 +55,25 @@ namespace sict
 		{
 			if (linear)
 			{
-				os << left << setw(MAX_SKU_LEN) << sku() << '|';
-				os << left << setw(20) << name() << '|';
-				os << right << fixed << setw(7) << setprecision(2) << cost() << '|';
-				os << right << setw(4) << quantity() << '|';
-				os << left << setw(10) << unit_ << '|';
-				os << right << setw(4) << qtyNeeded() << '|';
+				os << left << setw(MAX_SKU_LEN) << sku() << '|'
+					<< left << setw(20) << name() << '|'
+					<< right << fixed << setw(7) << setprecision(2) << cost() << '|'
+					<< right << setw(4) << quantity() << '|'
+					<< left << setw(10) << unit_ << '|'
+					<< right << setw(4) << qtyNeeded() << '|';
 			}
 			else
 			{
-				os << "Sku: " << sku() << endl;
-				os << "Name: " << name() << endl;
-				os << "Price: " << price() << endl;
-				os << "Price after tax: ";
+				os << "Sku: " << sku() << endl
+					<< "Name: " << name() << endl
+					<< "Price: " << price() << endl
+					<< "Price after tax: ";
 
 				taxed() ? os << cost() : os << "N/A";
-				os << endl;
-
-				os << "Quantity On Hand: " << quantity() << ' ' << unit_ << endl;
-				os << "Quantity Needed: " << qtyNeeded();
+				
+				os << endl
+					<< "Quantity On Hand: " << quantity() << ' ' << unit_ << "s " << endl
+					<< "Quantity Needed: " << qtyNeeded();
 			}
 		}
 
