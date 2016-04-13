@@ -34,27 +34,38 @@ namespace sict
 
 	fstream& AmaProduct::load(fstream& file)
 	{
-		char _sku[MAX_SKU_LEN + 1], _name[2000];
-		char _taxed, delim;
-		int _quantity, _qtyNeeded;
+		
+		// input buffer
+		char in[2000];
+
+		// temp variables
+		char _sku[MAX_SKU_LEN + 1], _name[2000], _taxed;
+		int _qty, _qtyNeeded;
 		double _price;
 
-		// read fields
-		file >> _sku;
-		file >> _name;
-		file >> _price;
-		file >> _taxed;
-		file >> _quantity;
-		file >> unit_;
-		file >> _qtyNeeded;
+		// get fields
+		file.getline(in, 2000, ',');
+		strcpy(_sku, in);
+		file.getline(in, 2000, ',');
+		strcpy(_name, in);
+		file.getline(in, 2000, ',');
+		_price = atof(in);
+		file.getline(in, 2000, ',');
+		_taxed = in[0];
+		file.getline(in, 2000, ',');
+		_qty = atoi(in);
+		file.getline(in, 2000, ',');
+		strcpy(unit_, in);
+		file.getline(in, 2000, ',');
+		_qtyNeeded = atoi(in);
 
 		// set fields
-/*		sku(_sku);
+		sku(_sku);
 		name(_name);
-		tolower(_taxed) == 'y' ? taxed(true) : taxed(false);
 		price(_price);
-		quantity(_quantity);
-		qtyNeeded(_qtyNeeded);*/
+		taxed(_taxed);
+		quantity(_qty);
+		qtyNeeded(_qtyNeeded);
 
 		return file;
 	}
