@@ -1,4 +1,6 @@
 #include "AmaProduct.h"
+#include <iomanip>
+
 using namespace std;
 
 namespace sict
@@ -74,17 +76,17 @@ namespace sict
 		{
 			if (linear)
 			{
-				os << os.left << os.width(MAX_SKU_LEN) << sku()
+				os << left << setw(MAX_SKU_LEN) << sku()
 					<< '|'
-					<< os.left << os.width(20) << name()
+					<< left << setw(20) << name()
 					<< '|'
-					<< os.right << os.precision(2) << os.width(7) << cost()
+					<< right << fixed << setw(7) << setprecision(2) << cost()
 					<< '|'
-					<< os.right << os.width(4) << quantity()
+					<< right << setw(4) << quantity()
 					<< '|'
-					<< os.left << os.width(10) << unit_
+					<< left << setw(10) << unit_
 					<< '|'
-					<< os.right << os.width(4) << qtyNeeded()
+					<< right << setw(4) << qtyNeeded()
 					<< '|';
 			}
 			else
@@ -92,9 +94,12 @@ namespace sict
 				os << "Sku: " << sku() << endl
 					<< "Name: " << name() << endl
 					<< "Price: " << cost() << endl
-					<< "Price after tax: " << taxed() ? os << price() : os << "N/A" << endl
-					<< "Quantitiy On Hand: " << quantity() << endl
-					<< "Quanttity Needed: " << qtyNeeded();
+					<< "Price after tax: ";
+				
+				taxed() ? os << price() : os << "N/A";
+				
+				os << endl << "Quantitiy On Hand: " << quantity() << endl
+					<< "Quanttity Needed: " << qtyNeeded() << endl;
 			}
 		}
 		else
