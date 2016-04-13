@@ -38,36 +38,23 @@ namespace sict
 		char _taxed, delim;
 		int _quantity, _qtyNeeded;
 		double _price;
-		
-		// skip tag
-		file.ignore();
-		file.ignore();
 
 		// read fields
-		file >> _sku >> delim
-			>> _name >> delim
-			>> _price >> delim
-			>> _taxed >> delim
-			>> _quantity >> delim
-			>> unit_ >> delim
-			>> _qtyNeeded >> delim;
-
-		cout << endl << endl << _sku
-			<< endl << _name
-			<< endl << _price
-			<< endl << _taxed
-			<< endl << _quantity
-			<< endl << unit_
-			<< endl << _qtyNeeded
-			<< endl << endl;
+		file >> _sku;
+		file >> _name;
+		file >> _price;
+		file >> _taxed;
+		file >> _quantity;
+		file >> unit_;
+		file >> _qtyNeeded;
 
 		// set fields
-		sku(_sku);
+/*		sku(_sku);
 		name(_name);
 		tolower(_taxed) == 'y' ? taxed(true) : taxed(false);
 		price(_price);
 		quantity(_quantity);
-		qtyNeeded(_qtyNeeded);
+		qtyNeeded(_qtyNeeded);*/
 
 		return file;
 	}
