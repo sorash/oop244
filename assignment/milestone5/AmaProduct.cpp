@@ -35,7 +35,7 @@ namespace sict
 	fstream& AmaProduct::load(fstream& file)
 	{
 		char _sku[MAX_SKU_LEN + 1], _name[2000];
-		char _taxed;
+		char _taxed, delim;
 		int _quantity, _qtyNeeded;
 		double _price;
 		
@@ -43,6 +43,31 @@ namespace sict
 		file.ignore();
 		file.ignore();
 
+		// read fields
+		file >> _sku >> delim
+			>> _name >> delim
+			>> _price >> delim
+			>> _taxed >> delim
+			>> _quantity >> delim
+			>> unit_ >> delim
+			>> _qtyNeeded >> delim;
+
+		cout << endl << endl << _sku
+			<< endl << _name
+			<< endl << _price
+			<< endl << _taxed
+			<< endl << _quantity
+			<< endl << unit_
+			<< endl << _qtyNeeded
+			<< endl << endl;
+
+		// set fields
+		sku(_sku);
+		name(_name);
+		tolower(_taxed) == 'y' ? taxed(true) : taxed(false);
+		price(_price);
+		quantity(_quantity);
+		qtyNeeded(_qtyNeeded);
 
 		return file;
 	}
