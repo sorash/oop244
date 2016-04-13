@@ -72,105 +72,112 @@ namespace sict
 
 	ostream& AmaProduct::write(ostream& os, bool linear) const
 	{
-		if (err_.isClear())
+		if (!err_.isClear())
+			os << err_.message();
+		else
 		{
 			if (linear)
 			{
-				os << left << setw(MAX_SKU_LEN) << sku()
-					<< '|'
-					<< left << setw(20) << name()
-					<< '|'
-					<< right << fixed << setw(7) << setprecision(2) << cost()
-					<< '|'
-					<< right << setw(4) << quantity()
-					<< '|'
-					<< left << setw(10) << unit_
-					<< '|'
-					<< right << setw(4) << qtyNeeded()
-					<< '|';
+				os << left << setw(MAX_SKU_LEN) << sku() << '|';
+				os << left << setw(20) << name() << '|';
+				os << right << fixed << setw(7) << setprecision(2) << cost() << '|';
+				os << right << setw(4) << quantity() << '|';
+				os << left << setw(10) << unit_ << '|';
+				os << right << setw(4) << qtyNeeded() << '|';
 			}
 			else
 			{
-				os << "Sku: " << sku() << endl
-					<< "Name: " << name() << endl
-					<< "Price: " << cost() << endl
-					<< "Price after tax: ";
-				
-				taxed() ? os << price() : os << "N/A";
-				
-				os << endl << "Quantitiy On Hand: " << quantity() << endl
-					<< "Quanttity Needed: " << qtyNeeded() << endl;
+				os << "Sku: " << sku() << endl;
+				os << "Name: " << name() << endl;
+				os << "Price: " << price() << endl;
+				os << "Price after tax: ";
+
+				taxed() ? os << cost() : os << "N/A";
+				os << endl;
+
+				os << "Quantity On Hand: " << quantity() << ' ' << unit_ << endl;
+				os << "Quantity Needed: " << qtyNeeded();
 			}
 		}
-		else
-			os << err_;
 
 		return os;
 	}
 
 	istream& AmaProduct::read(istream& istr)
 	{
-		char sku_[2000], name_[2000];
-		int quantity_, qtyNeeded_;
-		double price_;
-		char taxed_;
+		char _sku[MAX_SKU_LEN + 1], _name[2000];
+		char _taxed;
+		int _quantity, _qtyNeeded;
+		double _price;
 
 		cout << "Sku: ";
-		istr >> sku_;
-		sku(sku_);
+		istr >> _sku;
 
 		cout << "Name: ";
-		istr >> name_;
-		name(name_);
+		istr >> _name;
 
 		cout << "Unit: ";
 		istr >> unit_;
 
 		cout << "Taxed? (y/n): ";
-		istr >> taxed_;
-		if (taxed_ == 'Y' || taxed_ == 'y' || taxed_ == 'N' || taxed_ == 'n')
+		istr >> _taxed;
+
+		if (_taxed == 'Y' || _taxed == 'y' || _taxed == 'N' || _taxed == 'n')
 		{
-			tolower(taxed_) == 'y' ? taxed(true) : taxed(false);
 			istr.clear();
+			err_.clear();
 
 			cout << "Price: ";
-			istr >> price_;
-			if (istr.fail())
+			istr >> _price;
+
+			if (!istr.fail() && !istr.bad())
 			{
-				err_.message("Invalid Price Entry");
-				istr.setstate(ios::failbit);
-			}
-			else
-			{
-				price(price_);
+				istr.clear();
+				err_.clear();
 
 				cout << "Quantity On hand: ";
-				istr >> quantity_;
-				if (istr.fail())
+				istr >> _quantity;
+
+				if (!istr.fail() && !istr.bad())
 				{
-					err_.message("Invalid Quantity Entry");
-					istr.setstate(ios::failbit);
+					istr.clear();
+					err_.clear();
+
+					cout << "Quantity Needed: ";
+					istr >> _qtyNeeded;
+
+					if (istr.fail() || istr.bad())
+					{
+						err_ = "Invalid Quantity Needed Entry";
+						istr.setstate(ios::failbit);
+					}
 				}
 				else
 				{
-					quantity(quantity_);
-
-					cout << "Quantity Needed: ";
-					istr >> qtyNeeded_;
-					if (istr.fail())
-					{
-						err_.message("Invalid Quantity Needed Entry");
-						istr.setstate(ios::failbit);
-					}
-					else
-						qtyNeeded(qtyNeeded_);
+					err_ = "Invalid Quantity Entry";
+					istr.setstate(ios::failbit);
 				}
+			}
+			else
+			{
+				err_ = "Invalid Price Entry";
+				istr.setstate(ios::failbit);
 			}
 		}
 		else
 		{
-			err_.message("Only (Y)es or (N)o are acceptable");
+			err_ = "Only (Y)es or (N)o are acceptable";
 			istr.setstate(ios::failbit);
+		}
+
+		if (!istr.fail() && !istr.bad())
+		{
+			sku(_sku);
+			name(_name);
+			tolower(_taxed) == 'y' ? taxed(true) : taxed(false);
+			price(_price);
+			quantity(_quantity);
+			qtyNeeded(_qtyNeeded);
 		}
 
 		return istr;
