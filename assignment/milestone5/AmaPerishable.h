@@ -9,9 +9,9 @@ namespace sict
 	class AmaPerishable : public AmaProduct
 	{
 		Date expiry_;
-		AmaPerishable() : AmaProduct('P') {}
 
 	public:
+		AmaPerishable() : AmaProduct('P') {}
 		const Date& expiry() const;
 		void expiry(const Date& value);
 		fstream& store(fstream& file, bool addNewLine = true) const;

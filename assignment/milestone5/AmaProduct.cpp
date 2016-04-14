@@ -58,12 +58,12 @@ namespace sict
 		strcpy(unit_, in);
 		file.getline(in, 2000, ',');
 		_qtyNeeded = atoi(in);
-
+		
 		// set fields
 		sku(_sku);
 		name(_name);
 		price(_price);
-		taxed(_taxed);
+		_taxed == 1 ? taxed(true) : taxed(false);
 		quantity(_qty);
 		qtyNeeded(_qtyNeeded);
 
