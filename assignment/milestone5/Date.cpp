@@ -1,10 +1,7 @@
-#include <iomanip>
-#include <iostream>
-
-using namespace std;
-
 #include "Date.h"
 #include "general.h"
+
+using namespace std;
 
 namespace sict
 {
@@ -85,8 +82,8 @@ namespace sict
 	std::istream& Date::read(std::istream& istr)
 	{
 		char delim;
-		cin >> year_ >> delim >> mon_ >> delim >> day_;
-		if (cin.bad() || cin.fail())
+		istr >> year_ >> delim >> mon_ >> delim >> day_;
+		if (istr.bad() || istr.fail())
 			errCode(CIN_FAILED);
 		else
 		{
@@ -110,7 +107,7 @@ namespace sict
 	// writes the date in format: YYYY/MM/DD
 	std::ostream& Date::write(std::ostream& ostr)const
 	{
-		cout << year_ << '/' << setfill('0') << setw(2) << mon_ << '/' << setfill('0') << setw(2) << day_;
+		ostr << year_ << '/' << mon_ << '/' << day_;
 		return ostr;
 	}
 
