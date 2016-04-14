@@ -11,4 +11,6 @@
 
 #define MAX_NO_RECS 2000	// The maximum number of records in the data file.
 
+#define FILE_NAME "records.dat"	// name of record files
+
 #endif

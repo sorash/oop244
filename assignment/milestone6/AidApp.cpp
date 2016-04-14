@@ -1,4 +1,6 @@
 #include "AidApp.h"
+#include "AmaProduct.h"
+#include "AmaPerishable.h"
 
 namespace sict
 {
@@ -42,5 +44,50 @@ namespace sict
 			return choice;
 
 		return -1;
+	}
+
+	// opens records file, or create one if one does not exist
+	void AidApp::loadRecs()
+	{
+		// open file for reading
+		fstream file(FILE_NAME, ios::in);
+
+		// check if file exists
+		if (!file.fail())
+		{
+			int count = 0;
+			char type, delim;
+
+			// read records
+			while (!file.eof())
+			{
+				delete[] product_[count];
+
+				// read type
+				file >> type >> delim;
+
+				if (tolower(type) == 'p')	// perishable
+				{
+					product_[count] = new AmaPerishable();
+					product_[count]->load(file);
+				}
+				else	// non-perishable
+				{
+					product_[count] = new AmaProduct();
+					product_[count]->load(file);
+				}
+
+				count++;
+			}
+
+			file.close();
+		}
+		else
+		{
+
+			// create the file
+			file.open(FILE_NAME, ios::out);
+			file.close();
+		}
 	}
 }
