@@ -95,8 +95,11 @@ namespace sict
 				taxed() ? os << cost() : os << "N/A";
 				
 				os << endl
-					<< "Quantity On Hand: " << quantity() << ' ' << unit_ << "s " << endl
-					<< "Quantity Needed: " << qtyNeeded();
+					<< "Quantity On Hand: " << quantity() << ' ' << unit_;
+				if (quantity() > 1)
+					os << "s";
+
+				os << endl << "Quantity Needed: " << qtyNeeded();
 			}
 		}
 
