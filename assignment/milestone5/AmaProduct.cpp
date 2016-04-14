@@ -63,7 +63,7 @@ namespace sict
 		sku(_sku);
 		name(_name);
 		price(_price);
-		_taxed == 1 ? taxed(true) : taxed(false);
+		_taxed == '1' ? taxed(true) : taxed(false);
 		quantity(_qty);
 		qtyNeeded(_qtyNeeded);
 
