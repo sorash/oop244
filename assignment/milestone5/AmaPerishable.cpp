@@ -57,7 +57,7 @@ namespace sict
 
 		if (err_.isClear())
 		{
-			cout << "Expiry date (YYY/MM/DD): ";
+			cout << "Expiry date (YYYY/MM/DD): ";
 
 			Date temp;
 			istr >> temp;
