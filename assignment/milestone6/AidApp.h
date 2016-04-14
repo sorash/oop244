@@ -12,7 +12,7 @@ namespace sict
 	{
 		char filename_[256];
 		Product* product_[MAX_NO_RECS];
-		fstream datefile_;
+		fstream datafile_;
 		int noOfProducts_;
 
 		void pause() const;
@@ -23,9 +23,9 @@ namespace sict
 		int SearchProducts(const char* sku) const;
 		void addQty(const char* sku);
 		void addProduct(bool isPerishable);
-		int run();
 
 	public:
+		int run();
 		AidApp(const char* filename);
 		AidApp(const AidApp&) = delete;
 		AidApp& operator=(const AidApp&) = delete;

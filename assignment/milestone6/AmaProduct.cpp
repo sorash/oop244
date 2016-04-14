@@ -39,7 +39,7 @@ namespace sict
 		char in[2000];
 
 		// temp variables
-		char _sku[MAX_SKU_LEN + 1], _name[2000], _taxed;
+		char _sku[2000], _name[2000], _taxed;
 		int _qty, _qtyNeeded;
 		double _price;
 
@@ -108,7 +108,7 @@ namespace sict
 
 	istream& AmaProduct::read(istream& istr)
 	{
-		char _sku[MAX_SKU_LEN + 1], _name[2000];
+		char _sku[2000], _name[2000];
 		char _taxed;
 		int _quantity, _qtyNeeded;
 		double _price;
