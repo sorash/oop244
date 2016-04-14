@@ -60,31 +60,27 @@ namespace sict
 		if (!datafile_.fail())
 		{
 			int count = 0;
-			char type, delim;
+			char type, in[2000];
 
 			// read records
-			while (!datafile_.eof())
+			while (datafile_.getline(in, 2000, '\n'))
 			{
-
 				// read type
-				datafile_ >> type >> delim;
+				datafile_ >> type;
+				datafile_.ignore();
 
-				Product* temp;
+				delete product_[count];
 
 				if (tolower(type) == 'p')	// perishable
 				{
-					temp = new AmaPerishable;
-					temp->load(datafile_);
+					product_[count] = new AmaPerishable;
+					product_[count]->load(datafile_);
 				}
 				else	// non-perishable
 				{
-					temp = new AmaProduct;
-					temp->load(datafile_);
+					product_[count] = new AmaProduct;
+					product_[count]->load(datafile_);
 				}
-
-
-				delete[] product_[count];
-				product_[count] = temp;
 
 				count++;
 			}
@@ -119,23 +115,23 @@ namespace sict
 	void AidApp::listProducts() const
 	{
 		// print heading
-		cout << setw(4) << "Row" << '|'
+		cout << setw(3) << "Row" << '|'
 			<< left << setw(MAX_SKU_LEN) << "SKU" << '|'
 			<< left << setw(20) << "Product Name" << '|'
 			<< right << setw(7) << "Cost" << '|'
 			<< right << setw(4) << "QTY" << '|'
 			<< left << setw(10) << "Unit" << '|'
-			<< right << setw(4) << "Needed" << '|'
+			<< right << setw(4) << "Need" << '|'
 			<< setw(10) << "Expiry" << endl;
 
 		cout << setw(4) << setfill('-') << '|'
-			<< setw(MAX_SKU_LEN) << setfill('-') << '|'
-			<< setw(20) << setfill('-') << '|'
-			<< setw(7) << setfill('-') << '|'
-			<< setw(4) << setfill('-') << '|'
-			<< setw(10) << setfill('-') << '|'
-			<< setw(4) << setfill('-') << '|'
-			<< setw(10) << setfill('-') << endl;
+			<< setw(MAX_SKU_LEN + 1) << setfill('-') << '|'
+			<< setw(21) << setfill('-') << '|'
+			<< setw(8) << setfill('-') << '|'
+			<< setw(5) << setfill('-') << '|'
+			<< setw(11) << setfill('-') << '|'
+			<< setw(5) << setfill('-') << '|'
+			<< "-----------" << setfill(' ') << endl;
 
 		// total for all items
 		double total;
@@ -143,7 +139,7 @@ namespace sict
 		// print all products
 		for (int i = 0; i < noOfProducts_; i++)
 		{
-			cout << right << setw(4) << i + 1 << " | ";
+			cout << right << setw(3) << i + 1 << "|";
 			product_[i]->write(cout, true);
 			cout << endl;
 
@@ -155,8 +151,9 @@ namespace sict
 				pause();
 		}
 
-		cout << setw(75) << setfill('-') << endl;
-		cout << "Total cost of support: $" << setprecision(2) << total;
+		for (int i = 0; i < 73; i++)
+			cout << '-';
+		cout << endl << "Total cost of support: $" << fixed << setprecision(2) << total << endl;
 	}
 
 	// searches for an item with the same sku
@@ -250,7 +247,6 @@ namespace sict
 		// show menu and get user choice
 		while (choice = menu() != 0) 
 		{
-			/*
 			switch (choice)
 			{
 			case -1:
@@ -302,8 +298,8 @@ namespace sict
 				addQty(sku);
 				break;
 			}
-			*/
-
+			
+			/*
 			if (choice == -1)
 			{
 				// invalid choice
@@ -351,7 +347,7 @@ namespace sict
 				cin >> sku;
 
 				addQty(sku);
-			}
+			}*/
 		}
 
 		return 0;
