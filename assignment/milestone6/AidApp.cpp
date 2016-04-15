@@ -129,7 +129,7 @@ namespace sict
 			<< setw(21) << setfill('-') << '|'
 			<< setw(8) << setfill('-') << '|'
 			<< setw(5) << setfill('-') << '|'
-			<< setw(11) << setfill('-') << '|'
+			<< setw(10) << setfill('-') << '|'
 			<< setw(5) << setfill('-') << '|'
 			<< "-----------" << setfill(' ') << endl;
 
@@ -141,7 +141,7 @@ namespace sict
 		{
 			cout << right << setw(3) << i + 1 << "|";
 			product_[i]->write(cout, true);
-			cout << endl;
+			cout << setfill(' ') << endl;
 
 			// add to total
 			total += *product_[i];
@@ -151,7 +151,7 @@ namespace sict
 				pause();
 		}
 
-		for (int i = 0; i < 73; i++)
+		for (int i = 0; i < 72; i++)
 			cout << '-';
 		cout << endl << "Total cost of support: $" << fixed << setprecision(2) << total << endl;
 	}
@@ -180,6 +180,7 @@ namespace sict
 		{
 			// show the product
 			product_[index]->write(cout, false);
+			cout << endl;
 
 			// ask user for the quantity
 			int qty;
@@ -243,10 +244,13 @@ namespace sict
 	{
 		int choice, index;
 		char sku[2000];
+		bool keepRunning = true;
 
 		// show menu and get user choice
-		while (choice = menu() != 0) 
+		do 
 		{
+			choice = menu();
+
 			switch (choice)
 			{
 			case -1:
@@ -258,6 +262,7 @@ namespace sict
 			case 0:
 				// terminate program
 				cout << "Goodbye!!" << endl;
+				keepRunning = false;
 				break;
 
 			case 1:
@@ -298,57 +303,7 @@ namespace sict
 				addQty(sku);
 				break;
 			}
-			
-			/*
-			if (choice == -1)
-			{
-				// invalid choice
-				cout << "===Invalid Selection, try again.===" << endl;
-				pause();
-			}
-			else if (choice == 0)
-			{
-				// terminate program
-				cout << "Goodbye!!" << endl;
-			}
-			else if (choice == 1)
-			{
-				// list products
-				listProducts();
-			}
-			else if (choice == 2)
-			{
-				// display a product by user give sku
-				cout << "Please enter the SKU: ";
-				cin >> sku;
-
-				index = SearchProducts(sku);
-				if (index != -1)
-					product_[index]->write(cout, false);
-				else
-					cout << "Not found!" << endl;
-			}
-			else if (choice == 3)
-			{
-				// add a non-perishable product and load records
-				addProduct(false);
-				loadRecs();
-			}
-			else if (choice == 4)
-			{
-				// add a perishable product and load records
-				addProduct(true);
-				loadRecs();
-			}
-			else if (choice == 5)
-			{
-				// add to quantity of a product with user given sku
-				cout << "Please enter the SKU: ";
-				cin >> sku;
-
-				addQty(sku);
-			}*/
-		}
+		} while (choice != 0);
 
 		return 0;
 	}
