@@ -1,5 +1,6 @@
 #include "Date.h"
 #include "general.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -107,7 +108,7 @@ namespace sict
 	// writes the date in format: YYYY/MM/DD
 	std::ostream& Date::write(std::ostream& ostr)const
 	{
-		ostr << year_ << '/' << mon_ << '/' << day_;
+		ostr << year_ << '/' << setw(2) << setfill('0') << mon_ << '/' << setw(2) << setfill('0') << day_;
 		return ostr;
 	}
 
