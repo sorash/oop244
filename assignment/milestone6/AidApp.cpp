@@ -73,12 +73,12 @@ namespace sict
 
 				if (tolower(type) == 'p')	// perishable
 				{
-					product_[count] = new AmaPerishable;
+					product_[count] = new AmaPerishable();
 					product_[count]->load(datafile_);
 				}
 				else	// non-perishable
 				{
-					product_[count] = new AmaProduct;
+					product_[count] = new AmaProduct();
 					product_[count]->load(datafile_);
 				}
 
@@ -102,12 +102,16 @@ namespace sict
 	// writes all product records to the file
 	void AidApp::saveRecs()
 	{
-		// open file for writing
+
+
+		for (int i = 0; i < noOfProducts_; i++)
+		{
+			product_[i]->write(cout, true);
+			cout << setfill(' ') << endl;
+		}
+
 		datafile_.open(filename_, ios::out);
 
-		// loop through all products and write them to file
-		for (int i = 0; i < noOfProducts_; i++)
-			product_[i]->store(datafile_);
 
 		datafile_.close();
 	}
