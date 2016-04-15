@@ -13,7 +13,7 @@ namespace sict
 
 		for (int i = 0; i < MAX_NO_RECS; i++)
 			product_[i] = nullptr;
-		
+
 		noOfProducts_ = 0;
 
 		loadRecs();
@@ -69,7 +69,7 @@ namespace sict
 				datafile_ >> type;
 				datafile_.ignore();
 
-				delete product_[count];
+				delete[] product_[count];
 
 				if (tolower(type) == 'p')	// perishable
 				{
@@ -103,15 +103,10 @@ namespace sict
 	void AidApp::saveRecs()
 	{
 
-
-		for (int i = 0; i < noOfProducts_; i++)
-		{
-			product_[i]->write(cout, true);
-			cout << setfill(' ') << endl;
-		}
-
 		datafile_.open(filename_, ios::out);
 
+		for (int i = 0; i < noOfProducts_; i++)
+			product_[i]->store(datafile_);
 
 		datafile_.close();
 	}
@@ -228,7 +223,7 @@ namespace sict
 
 		// create product based on passed type
 		isPerishable ? temp = new AmaPerishable : temp = new AmaProduct;
-		
+
 		// get product info from user and show errors if creation failed
 		istream& read = temp->read(cin);
 		if (read.fail() || read.bad())
@@ -251,7 +246,7 @@ namespace sict
 		bool keepRunning = true;
 
 		// show menu and get user choice
-		do 
+		do
 		{
 			choice = menu();
 
@@ -278,7 +273,7 @@ namespace sict
 				// display a product by user give sku
 				cout << "Please enter the SKU: ";
 				cin >> sku;
-				
+
 				index = SearchProducts(sku);
 				if (index != -1)
 					product_[index]->write(cout, false);
