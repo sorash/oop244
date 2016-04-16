@@ -56,42 +56,44 @@ namespace sict
 		// open file for reading
 		datafile_.open(filename_, ios::in);
 
+		char type;
+		int count = 0;
+		bool keepReading = true;
+
 		// check if file exists
 		if (!datafile_.fail())
 		{
-			int count = 0;
-			char type, in[2000];
-
-			// read records
-			while (datafile_.getline(in, 2000, '\n'))
+			do
 			{
-				// read type
 				datafile_ >> type;
-				datafile_.ignore();
 
 				delete[] product_[count];
 
-				if (tolower(type) == 'p')	// perishable
-				{
-					product_[count] = new AmaPerishable();
-					product_[count]->load(datafile_);
-				}
-				else	// non-perishable
-				{
-					product_[count] = new AmaProduct();
-					product_[count]->load(datafile_);
-				}
+				if (type == 'P')
+					product_[count] = new AmaPerishable;
+				if (type == 'N')
+					product_[count] = new AmaProduct;
+				else
+					product_[count] = nullptr;
 
-				count++;
-			}
+				if (product_[count] != nullptr)
+				{
+					datafile_.ignore();
+					if (product_[count]->load(datafile_).fail())
+						keepReading = false;
 
-			// set number of files read
+					count++;
+				}
+			} while (keepReading);
+
 			noOfProducts_ = count;
 
 			datafile_.close();
 		}
 		else
 		{
+			datafile_.clear();
+			datafile_.close();
 
 			// create the file
 			datafile_.open(filename_, ios::out);
@@ -274,7 +276,7 @@ namespace sict
 
 				index = SearchProducts(sku);
 				if (index != -1)
-					product_[index]->write(cout, false);
+					product_[index]->write(cout, false) << endl;
 				else
 					cout << "Not found!" << endl;
 
