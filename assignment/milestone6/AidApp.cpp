@@ -73,8 +73,6 @@ namespace sict
 					product_[count] = new AmaPerishable;
 				if (type == 'N')
 					product_[count] = new AmaProduct;
-				else
-					product_[count] = nullptr;
 
 				if (product_[count] != nullptr)
 				{
@@ -145,7 +143,7 @@ namespace sict
 			cout << setfill(' ') << endl;
 
 			// add to total
-			total += product_[i]->cost();
+			total += product_[i]->cost() * product_[i]->quantity();
 
 			// pause when 10 products are printed
 			if (i == 10)
@@ -229,7 +227,7 @@ namespace sict
 		// get product info from user and show errors if creation failed
 		istream& read = temp->read(cin);
 		if (read.fail() || read.bad())
-			temp->write(cout, false);
+			temp->write(cout, false) << endl;
 		else
 		{
 			// add to products and save records
