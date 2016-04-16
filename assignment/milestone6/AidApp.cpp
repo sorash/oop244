@@ -218,21 +218,16 @@ namespace sict
 	// creates a new product
 	void AidApp::addProduct(bool isPerishable)
 	{
-		// hold a temporary product
-		Product* temp;
-
 		// create product based on passed type
-		isPerishable ? temp = new AmaPerishable : temp = new AmaProduct;
+		isPerishable ? product_[noOfProducts_] = new AmaPerishable : product_[noOfProducts_] = new AmaProduct;
 
 		// get product info from user and show errors if creation failed
-		istream& read = temp->read(cin);
-		if (read.fail() || read.bad())
-			temp->write(cout, false) << endl;
+		if (product_[noOfProducts_]->read(cin).fail())
+			product_[noOfProducts_]->write(cout, false) << endl;
 		else
 		{
-			// add to products and save records
+			// add to products count
 			noOfProducts_++;
-			product_[noOfProducts_] = temp;
 
 			saveRecs();
 		}
