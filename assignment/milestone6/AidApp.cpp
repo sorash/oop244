@@ -119,7 +119,7 @@ namespace sict
 			<< left << setw(20) << "Product Name" << '|'
 			<< right << setw(7) << "Cost" << '|'
 			<< right << setw(4) << "QTY" << '|'
-			<< left << setw(10) << "Unit" << '|'
+			<< left << setw(11) << "Unit" << '|'
 			<< right << setw(4) << "Need" << '|'
 			<< setw(10) << "Expiry" << endl;
 
@@ -128,12 +128,12 @@ namespace sict
 			<< setw(21) << setfill('-') << '|'
 			<< setw(8) << setfill('-') << '|'
 			<< setw(5) << setfill('-') << '|'
-			<< setw(10) << setfill('-') << '|'
+			<< setw(11) << setfill('-') << '|'
 			<< setw(5) << setfill('-') << '|'
 			<< "-----------" << setfill(' ') << endl;
 
 		// total for all items
-		double total;
+		double total = 0;
 
 		// print all products
 		for (int i = 0; i < noOfProducts_; i++)
