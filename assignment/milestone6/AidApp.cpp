@@ -143,7 +143,7 @@ namespace sict
 			cout << setfill(' ') << endl;
 
 			// add to total
-			total += *product_[i];
+			total += product_[i]->cost();
 
 			// pause when 10 products are printed
 			if (i == 10)
@@ -243,7 +243,6 @@ namespace sict
 	{
 		int choice, index;
 		char sku[2000];
-		bool keepRunning = true;
 
 		// show menu and get user choice
 		do
@@ -261,7 +260,6 @@ namespace sict
 			case 0:
 				// terminate program
 				cout << "Goodbye!!" << endl;
-				keepRunning = false;
 				break;
 
 			case 1:

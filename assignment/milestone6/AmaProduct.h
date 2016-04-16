@@ -4,6 +4,7 @@
 #include "Product.h"
 #include "ErrorMessage.h"
 #include <fstream>
+#include <cstring>
 
 using namespace std;
 
