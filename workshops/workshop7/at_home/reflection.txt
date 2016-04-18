@@ -1,0 +1,5 @@
+1. virtual functions are used when a class requires any child that uses the current class as a parent is advised to create its own version of the function, however a default will be provided.
+2. virtual functions are used to advise a child to create its own version, however a pure virtual means that the child MUST create its own version. Therefore a pure virtual class or abstract 
+class can not instantiate an object. for example if you have an abstract class animal, you cant create an object of animal and can only create ones of its children, such as monkey, tiger, etc.
+3. abstract classes are ones that contain one or more pure virtual functions. this forces its children to create their own versions of these functions. it also prevents creation of objects of this
+class, and only objects of children with fully implemented versions of pure virutal functions can be created.

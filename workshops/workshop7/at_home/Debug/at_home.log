@@ -1,0 +1,4 @@
+﻿  Driver.cpp
+c:\users\sashrafi3\desktop\oop244\workshops\workshop7\at_home\driver.cpp(11): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
+  at_home.vcxproj -> C:\Users\sashrafi3\Desktop\oop244\workshops\workshop7\at_home\Debug\at_home.exe

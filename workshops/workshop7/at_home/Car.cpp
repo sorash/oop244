@@ -31,5 +31,7 @@ namespace sict
 	std::ostream& operator<<(std::ostream& os, const Car& c)
 	{
 		c.display(os);
+
+		return os;
 	}
 }
