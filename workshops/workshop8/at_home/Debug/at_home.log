@@ -1,0 +1,9 @@
+﻿  String.cpp
+c:\users\sashrafi3\desktop\oop244\workshops\workshop8\at_home\string.cpp(55): warning C4018: '<' : signed/unsigned mismatch
+c:\users\sashrafi3\desktop\oop244\workshops\workshop8\at_home\string.cpp(59): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
+c:\users\sashrafi3\desktop\oop244\workshops\workshop8\at_home\string.cpp(131): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(118) : see declaration of 'strcat'
+c:\users\sashrafi3\desktop\oop244\workshops\workshop8\at_home\string.cpp(161): warning C4172: returning address of local variable or temporary
+c:\users\sashrafi3\desktop\oop244\workshops\workshop8\at_home\string.cpp(171): warning C4172: returning address of local variable or temporary
+  at_home.vcxproj -> C:\Users\sashrafi3\Desktop\oop244\workshops\workshop8\at_home\Debug\at_home.exe
